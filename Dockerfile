@@ -1,5 +1,7 @@
 FROM httpd:latest
 
+LABEL maintainer="bencollier@fastmail.com"
+
 RUN apt-get -y install apt-utils
 RUN apt-get -y install curl
 RUN apt-get -y install jq
