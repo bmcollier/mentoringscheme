@@ -1,7 +1,5 @@
-# httpd-cgi
+# cobol-api
 
-Docker image with apache in order to run minimal scripts via cgi.
+COBOL API with CGI/Apache backend, Dockerised.
 
-## mount folder with cgi-scripts
-`docker run -d -p 9090:80 -v $(pwd)/scripts:/usr/local/apache2/cgi-bin hypoport/httpd-cgi`
-
+Runs on port 80.
