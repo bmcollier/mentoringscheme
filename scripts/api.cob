@@ -17,7 +17,6 @@ working-storage section.
 01 newline              pic x     value x'0a'.
 01 value-string         pic x(256).
 
-*> ***************************************************************
 procedure division.
 
 *> Always send out the Content-type before any other IO
@@ -28,7 +27,7 @@ end-display
 
 accept value-string from environment "REQUEST_URI".
 
-*> Parse root and choose output
+*> API Router
 if value-string is equal to "/api"
     call "root".
 if value-string is equal to "/api/towns"
