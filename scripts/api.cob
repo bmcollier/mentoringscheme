@@ -1,14 +1,3 @@
-
-*> ***************************************************************
-*> Author:    Brian Tiffin, Francois Hiniger
-*> Date:      30-Aug-2008, 02-Oct-2013
-*> License:   Public Domain
-*> Purpose:   Display some GnuCOBOL CGI environment space
-*> Tectonics: cobc -x gnucobolcgi.cob
-*>  Move gnucobolcgi to the cgi-bin directory as gnucobol.cgi
-*>  browse http://localhost/cgi-bin/gnucobol.cgi
-*>      or http://localhost/gnucgiform.html
-*> ***************************************************************
 identification division.
 program-id. gnucobolcgi.
 
