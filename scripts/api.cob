@@ -1,5 +1,5 @@
 identification division.
-program-id. gnucobolcgi.
+program-id. cobolapi.
 
 environment division.
 input-output section.
@@ -33,4 +33,4 @@ if value-string is equal to "/api"
 if value-string is equal to "/api/towns"
     call "towns".
 
-end program gnucobolcgi.
+end program cobolapi.
