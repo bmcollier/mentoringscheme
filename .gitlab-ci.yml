@@ -14,6 +14,7 @@ build_image:
     - docker push registry.gitlab.com/bencollier/cobol-api:latest
     
 deploy_to_heroku:
+  image: docker:latest
   stage: deploy
   services:
   - docker:dind
