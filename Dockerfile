@@ -17,3 +17,4 @@ COPY scripts/towns.cob /usr/local/apache2/cgi-bin/
 RUN cobc -x -free /usr/local/apache2/cgi-bin/api.cob /usr/local/apache2/cgi-bin/root.cob /usr/local/apache2/cgi-bin/towns.cob -o /usr/local/apache2/cgi-bin/api
 
 ENTRYPOINT ["/usr/local/apache2/forward_env_start_httpd"]
+CMD ls
