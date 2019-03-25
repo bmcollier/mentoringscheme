@@ -18,6 +18,6 @@ RUN cobc -x -free /usr/local/apache2/cgi-bin/api.cob /usr/local/apache2/cgi-bin/
 
 #update apache port at runtime for Heroku
 ENTRYPOINT []
-CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground
+CMD sed -i "s/80/$PORT/g" /etc/apache2/conf/httpd.conf && docker-php-entrypoint apache2-foreground
 
 CMD ["/usr/local/apache2/forward_env_start_httpd"]
