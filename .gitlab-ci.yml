@@ -20,4 +20,6 @@ deploy_to_heroku:
   - docker:dind
   script:
     - docker login --username=_ --password=bd453113-7aed-4758-b613-bd07d98bd587 registry.heroku.com
-    - docker push registry.heroku.com/cobol-apiweb
+    - docker pull registry.gitlab.com/bencollier/cobol-api:latest
+    - docker tag registry.gitlab.com/bencollier/cobol-api:latest registry.heroku.com/cobol-api/web
+    - docker push registry.heroku.com/cobol-api/web
