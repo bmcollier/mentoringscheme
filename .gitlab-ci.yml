@@ -24,4 +24,4 @@ deploy_to_heroku:
     - docker login --username=_ --password=bd453113-7aed-4758-b613-bd07d98bd587 registry.heroku.com
     - docker tag registry.gitlab.com/bencollier/cobol-api:latest registry.heroku.com/cobol-api:latest
     - docker push registry.heroku.com/cobol-api:latest
-    - docker run --rm -e HEROKU_API_KEY=bd453113-7aed-4758-b613-bd07d98bd587 registry.heroku.com/cobol-api:latest container:release web --app cobol-api
+    - docker run --rm -e HEROKU_API_KEY=bd453113-7aed-4758-b613-bd07d98bd587 cobol-api:latest container:release web --app cobol-api
