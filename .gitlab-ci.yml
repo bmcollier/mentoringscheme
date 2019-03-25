@@ -30,7 +30,6 @@ deploy_to_heroku:
   stage: deploy
   services:
   - docker:dind
-  extends: .extendjob
   script:
     - npm install -g heroku
     - heroku container:release web --app cobol-api
