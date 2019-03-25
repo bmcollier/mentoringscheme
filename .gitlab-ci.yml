@@ -7,21 +7,30 @@ build_image:
   image: docker:latest
   services:
   - docker:dind
-  stage: package
+  stage: build
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker build -t registry.gitlab.com/bencollier/cobol-api .
     - docker push registry.gitlab.com/bencollier/cobol-api:latest
     
-deploy_to_heroku:
+push_to_heroku:
   image: docker:latest
-  stage: deploy
+  stage: package
   services:
   - docker:dind
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker pull registry.gitlab.com/bencollier/cobol-api:latest
     - docker login --username=_ --password=bd453113-7aed-4758-b613-bd07d98bd587 registry.heroku.com
-    - docker tag registry.gitlab.com/bencollier/cobol-api:latest registry.heroku.com/cobol-api:latest
-    - docker push registry.heroku.com/cobol-api:latest
-    - docker run --rm -e HEROKU_API_KEY=bd453113-7aed-4758-b613-bd07d98bd587 cobol-api:latest container:release web --app cobol-api
+    - docker tag registry.gitlab.com/bencollier/cobol-api:latest registry.heroku.com/cobol-api/web:latest
+    - docker push registry.heroku.com/cobol-api/web:latest
+
+deploy_to_heroku:
+  image: node:latest
+  stage: deploy
+  services:
+  - docker:dind
+  extends: .extendjob
+  script:
+    - npm install -g heroku
+    - heroku container:release web --app cobol-api
