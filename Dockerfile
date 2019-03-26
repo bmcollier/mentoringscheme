@@ -7,6 +7,7 @@ RUN apt-get -y install apt-utils
 RUN apt-get -y install curl
 RUN apt-get -y install jq
 RUN apt-get -y install open-cobol
+RUN apt-get -y install sqlite
 
 COPY httpd.conf /usr/local/apache2/conf/httpd.conf
 COPY forward_env_start_httpd /usr/local/apache2/
