@@ -1,7 +1,7 @@
 stages:
  - build
- - package
- - deploy
+ - push
+ - release
 
 build_image:
   image: docker:latest
@@ -15,7 +15,7 @@ build_image:
     
 push_to_heroku:
   image: docker:latest
-  stage: package
+  stage: push
   services:
   - docker:dind
   script:
@@ -27,7 +27,7 @@ push_to_heroku:
 
 deploy_to_heroku:
   image: node:latest
-  stage: deploy
+  stage: release
   services:
   - docker:dind
   script:
