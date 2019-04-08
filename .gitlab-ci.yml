@@ -1,7 +1,7 @@
 stages:
  - build
- - package
- - deploy
+ - push
+ - release
 
 build_image:
   image: docker:latest
@@ -15,19 +15,19 @@ build_image:
     
 push_to_heroku:
   image: docker:latest
-  stage: package
+  stage: push
   services:
   - docker:dind
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker pull registry.gitlab.com/bencollier/cobol-api:latest
-    - docker login --username=_ --password=bd453113-7aed-4758-b613-bd07d98bd587 registry.heroku.com
+    - docker login --username=_ --password=$HEROKU_PASS registry.heroku.com
     - docker tag registry.gitlab.com/bencollier/cobol-api:latest registry.heroku.com/cobol-api/web:latest
     - docker push registry.heroku.com/cobol-api/web:latest
 
 deploy_to_heroku:
   image: node:latest
-  stage: deploy
+  stage: release
   services:
   - docker:dind
   script:
