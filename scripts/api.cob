@@ -26,14 +26,14 @@ working-storage section.
 01 C3                   pic x(256).
 01 leader               pic x(256).
 01 api                  pic x(256).
-01 person               pic x(256).
+01 route                pic x(256).
 01 person-id            pic x(256).
 
 procedure division.
 
 *> Always send out the Content-type before any other IO
 display
-   "Content-type: application/json"
+   "Content-type: text/html"
    newline
 end-display
 
@@ -45,16 +45,17 @@ delimited by "/"
 into
   leader delimiter D0 count C0
   api delimiter D1 count C1
-  person delimiter D2 count C2
+  route delimiter D2 count C2
   person-id delimiter D3 count C3
 end-unstring
 
 *> API Router
-if person is equal to "people"
-    call "person" using by reference person-id.
-if value-string is equal to "/api"
-    call "root".
-if value-string is equal to "/api/towns"
-    call "towns".
+if route is equal to "mentor"
+    call "enrolMentor"
+else if route is equal to "mentee"
+    call "enrolMentee"
+else if route is equal to spaces
+    call "front"
+else call 'error404'.
 
 end program cobolapi.
